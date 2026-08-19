@@ -238,6 +238,25 @@ body.onlight .chapters .lbl{color:#050505}
   radial-gradient(56% 50% at 92% 96%, rgba(199,78,28,.4), transparent 62%),
   #050505;min-height:92svh;display:flex;align-items:center}
 .contact-sec h2{font-size:clamp(2.4rem,5.6vw,4.8rem);max-width:16ch;margin-bottom:34px}
+/* newsletter */
+.nlx{margin-top:clamp(30px,4.5vw,48px);max-width:520px}
+.nlx-h{font-family:var(--m);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:10px}
+.nlx-p{font-size:.95rem;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:16px;max-width:46ch}
+.nlx-form{display:flex;gap:10px}
+.nlx-form input{flex:1;min-width:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.25);
+  border-radius:10px;padding:13px 16px;color:#fff;font-family:var(--m);font-size:.9rem;outline:none;
+  transition:border-color .3s}
+.nlx-form input:focus{border-color:#fff}
+.nlx-form input::placeholder{color:rgba(255,255,255,.35)}
+.nlx-form button{background:#fff;color:#0A0A0A;border:none;border-radius:10px;padding:13px 24px;
+  font-weight:800;font-size:.9rem;cursor:pointer;transition:transform .25s,opacity .25s;flex:none}
+.nlx-form button:hover{transform:translateY(-2px)}
+.nlx-form button:disabled{opacity:.5;transform:none;cursor:default}
+.nlx-msg{font-family:var(--m);font-size:11px;letter-spacing:.08em;margin-top:10px;min-height:16px;
+  color:rgba(255,255,255,.7)}
+@media(max-width:560px){.nlx-form{flex-direction:column}.nlx-form button{width:100%}}
+
 .email-l{font-family:var(--m);font-size:clamp(1rem,1.8vw,1.4rem);color:#fff;display:inline-block;
   padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.5);transition:border-color .3s,opacity .3s}
 .email-l:hover{opacity:.7;border-color:#fff}
@@ -411,6 +430,41 @@ body.appopen .chapters{display:none}
   .rail-stick{position:static;height:auto;display:block}
   .rail{flex-wrap:wrap;transform:none!important}
   .rail figure{width:calc(50% - 8px)}
+}
+
+/* ══════════ mobile pass — final overrides ══════════ */
+@media(max-width:899px){
+  /* fixed chrome: legible pill over any content */
+  .brand{background:rgba(10,10,10,.6);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    border-radius:16px;padding:8px 14px 8px 8px;max-width:calc(100vw - 28px)}
+  body.onlight .brand{background:rgba(244,240,234,.7)}
+
+  /* hero: flow naturally under the chrome, portrait framed and face-cropped */
+  .hero{height:auto;min-height:100svh;align-items:flex-start;
+    padding-top:88px;padding-bottom:40px}
+  .hero-grid{gap:24px}
+  .hero-pc{width:min(100%,350px);margin:0 auto;aspect-ratio:4/5;max-height:none;
+    border:1px solid rgba(255,255,255,.16)}
+  .hero-pc img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+  .hero-scroll{display:none}
+
+  /* hub: the list is the navigation — put it before the preview */
+  .hub-grid{display:flex;flex-direction:column}
+  .hub-preview{order:2;aspect-ratio:16/10;max-height:34vh;margin-top:26px}
+  .hub-preview img{width:100%;height:100%;object-fit:cover}
+
+  /* panels: media stays inside its card */
+  .cut-fig{padding-top:0;width:min(100%,380px)}
+  .cut-fig img{max-height:48vh;width:auto;max-width:100%;margin:0 auto;display:block}
+  .pc.portrait img{max-height:56vh}
+
+  /* article + product overlays: band stacks with a shorter media */
+  .ap-band{grid-template-columns:1fr}
+  .ap-band-media{min-height:32vh;max-height:36vh}
+  .ap-band-panel{padding:26px 22px 30px}
+  .ap-band h1{font-size:clamp(1.7rem,8vw,2.5rem)}
+  .ap-cols{grid-template-columns:1fr;gap:30px}
+  .ap-side{order:2}
 }
 </style>
 </head>
@@ -727,12 +781,21 @@ body.appopen .chapters{display:none}
 <div class="wrap">
   <div class="sec-label rv">Get in touch</div>
   <h2 class="kin" data-kin>If you're building something, I'd like to hear about it.</h2>
-  <p class="hero-sub rv" data-d="1" style="margin-bottom:28px">
-    I take on IP strategy and portfolio work, and I advise early-stage teams on technology and
-    intellectual property. If you just have an idea and no idea what to do with it, that's a
-    fine reason to write too.
+  <div class="nlx rv" data-d="1">
+    <div class="nlx-h">The field notes, by email</div>
+    <p class="nlx-p">One short letter, most Sundays — what shipped across the six, what I learned,
+      and the week's best piece from the site. No noise, unsubscribe anytime.</p>
+    <form class="nlx-form" id="nlForm" novalidate>
+      <input type="email" id="nlEmail" placeholder="you@email.com" autocomplete="email" required aria-label="Email address">
+      <button type="submit">Join</button>
+    </form>
+    <div class="nlx-msg" id="nlMsg" role="status" aria-live="polite"></div>
+  </div>
+  <p class="hero-sub rv" data-d="2" style="margin:34px 0 14px;max-width:52ch">
+    Working on something that needs IP strategy, portfolio work, or an early-stage advisor?
+    That's a different conversation — write me directly.
   </p>
-  <a class="email-l rv" data-d="1" href="mailto:hello@theanthonyduncan.com">hello@theanthonyduncan.com</a>
+  <a class="email-l rv" data-d="2" href="mailto:hello@theanthonyduncan.com">hello@theanthonyduncan.com</a>
   <div class="endrow">
     <span class="ticks" aria-hidden="true"><i style="--c:#0F7F72"></i><i style="--c:#2B4C8C"></i><i style="--c:#A8701A"></i><i style="--c:#5C4B8F"></i><i style="--c:#4C7A2E"></i><i style="--c:#9B2242"></i></span>
     <div class="flinks"><a href="#">Threads</a><a href="#">LinkedIn</a><a href="#">X</a><a href="#topics">Topics</a></div>
@@ -1494,6 +1557,33 @@ const lightIO = new IntersectionObserver(es=>{
   es.forEach(e=>document.body.classList.toggle('onlight', e.isIntersecting));
 },{rootMargin:'0px 0px -82% 0px'});
 lightIO.observe(document.querySelector('.topics-sec'));
+
+/* ══════════ newsletter ══════════ */
+(function(){
+  const form = document.getElementById('nlForm');
+  if(!form) return;
+  const email = document.getElementById('nlEmail');
+  const btn   = form.querySelector('button');
+  const msg   = document.getElementById('nlMsg');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const v = (email.value || '').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){ msg.textContent = "That email doesn't look right."; return; }
+    btn.disabled = true; msg.textContent = 'Joining\u2026';
+    try{
+      const r = await fetch('https://content-engine-8hzp.onrender.com/newsletter/subscribe', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: v })
+      });
+      if(!r.ok) throw new Error();
+      msg.textContent = "You're in. Most Sundays, no noise.";
+      email.value = '';
+    }catch{
+      msg.textContent = 'Something hiccuped \u2014 just email me instead.';
+    }
+    btn.disabled = false;
+  });
+})();
 
 /* ══════════ scene deck ══════════ */
 const DECK = !RM && matchMedia('(min-width:900px)').matches && innerHeight >= 560;
