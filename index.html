@@ -458,6 +458,15 @@ body.appopen .chapters{display:none}
   .cut-fig img{max-height:48vh;width:auto;max-width:100%;margin:0 auto;display:block}
   .pc.portrait img{max-height:56vh}
 
+  /* off-the-clock: swipeable snap carousel, next card peeking */
+  .rail{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:14px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    padding:6px 20px 10px;margin:0 -20px;scrollbar-width:none;touch-action:pan-x pan-y}
+  .rail::-webkit-scrollbar{display:none}
+  .rail figure{flex:0 0 76vw;max-width:330px;width:auto;scroll-snap-align:center;margin:0}
+  .rail img{width:100%;aspect-ratio:3/4;object-fit:cover}
+  .rail figcaption{margin-top:10px}
+
   /* article + product overlays: band stacks with a shorter media */
   .ap-band{grid-template-columns:1fr}
   .ap-band-media{min-height:32vh;max-height:36vh}
