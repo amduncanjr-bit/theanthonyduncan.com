@@ -7,7 +7,7 @@ Usage:
 article.json:
 {
   "slug": "my-new-article",         // lowercase, hyphens only
-  "b": "yp",                        // tc|yp|sl|tr|rw|bc|note
+  "b": "yp",                        // vw|tc|yp|sl|tr|rw|bc|note
   "t": "Title",
   "d": "One-sentence dek.",
   "date": "Sep 2026",
@@ -29,8 +29,8 @@ for k in ("slug", "b", "t", "d", "date", "read", "body"):
         sys.exit(f"missing field: {k}")
 if not re.fullmatch(r"[a-z0-9-]+", a["slug"]):
     sys.exit("slug must be lowercase letters, digits, hyphens")
-if a["b"] not in ("tc", "yp", "sl", "tr", "rw", "bc", "note"):
-    sys.exit("b must be one of tc|yp|sl|tr|rw|bc|note")
+if a["b"] not in ("vw", "tc", "yp", "sl", "tr", "rw", "bc", "note"):
+    sys.exit("b must be one of vw|tc|yp|sl|tr|rw|bc|note")
 
 html = open("index.html").read()
 if f"'{a['slug']}'" in html:
